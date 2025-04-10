@@ -1,3 +1,5 @@
+#!/bin/bash
+
 FLATPAKS=(
     com.discordapp.Discord
     rest.insomnia.insomnia
