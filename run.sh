@@ -12,12 +12,21 @@ printLogo() {
 EOF
 }
 
-
-
-
+# Begin of Script #
 
 clear
 printLogo
+
+set -e 
+
+source install.sh
+
+if [ ! -f "packages.conf" ]; then
+  echo "Error: packages.conf not found!"
+  exit 1
+fi
+
+source packages.conf
 
 sudo pacman -Syu --noconfirm
 
@@ -34,11 +43,23 @@ else
   echo "yay is already installed"
 fi
 
-source install.sh
+echo "Installing basic utilities"
+install_packages "${UTILITIES[@]}"
 
+echo "Installing file utilities"
+install_packages "${FILES[@]}"
 
+echo "Installing document tools"
+install_packages "${DOCS[@]}"
 
-echo "Installing flatpak"
+echo "Installing rice tools"
+install_packages "${RICE[@]}"
+
+echo "Installing dev tools"
+install_packages "${CODE[@]}"
+
+echo "Installing fonts"
+install_packages "${FONTS[@]}"
+
+echo "Installing flatpaks apps"
 . install-flatpak.sh
-
-

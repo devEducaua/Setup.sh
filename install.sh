@@ -1,3 +1,16 @@
+#!/bin/bash
+
+# Function to check if a package is installed
+is_installed() {
+  pacman -Qi "$1" &> /dev/null
+}
+
+# Function to check if a package is installed
+is_group_installed() {
+  pacman -Qg "$1" &> /dev/null
+}
+
+# Function to install packages if not already installed
 install_packages() {
   local packages=("$@")
   local to_install=()
