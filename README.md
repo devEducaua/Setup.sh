@@ -14,3 +14,7 @@ after, give permissions for the script
 chmod +x run.sh
 
 ```
+
+---
+
+**Warning**: *This script is for Arch Linux, or Arch Linux based distros.*
