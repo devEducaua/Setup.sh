@@ -14,6 +14,11 @@ after, give permissions for the script
 chmod +x run.sh
 
 ```
+# How this works
+- packages.conf: files has all packages that i want to install
+- install-flatpaks.sh: has the list of flatpak applications more the install of they
+- install.sh: is for some useful functions
+- run.sh: execute all scripts
 
 ---
 
