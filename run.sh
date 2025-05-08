@@ -43,48 +43,65 @@ else
   echo "yay is already installed"
 fi
 
-echo "Choose the apps groups:"
-select option in "basic apps" "utils packages" "terminal tools" "rice tools" "docs tools" "dev tools" "fonts" "flatpak apps" "exit"; do
-    case $REPLY in
-        1)
-            echo "Installing basic apps"
-            install_packages "${APPS[@]}"
-            ;;
-        2)
-            echo "Installing utils packages"
-            install_packages "${UTILS[@]}"
-            ;;
-        3)
-            echo "Installing terminal tools"
-            install_packages "${TERMINALTOOLS[@]}"
-            ;;
-        4)
-            echo "Installing rice tools"
-            install_packages "${RICETOOLS[@]}"
-            ;;
+options=("basic apps" "utils packages" "terminal tools" "rice tools" "docs tools" "dev tools" "fonts" "flatpak apps" "exit")
 
-        5)
-            echo "Installing document tools"
-            install_packages "${DOCS[@]}"
-            ;;
+while true; do
+    echo "Choose the apps groups:"
+    select option in "${options[@]}"; do
+        case $REPLY in
+            1)
+                echo "Installing basic apps"
+                install_packages "${APPS[@]}"
+                break
+                ;;
+            2)
+                echo "Installing utils packages"
+                install_packages "${UTILS[@]}"
+                break
+                ;;
+            3)
+                echo "Installing terminal tools"
+                install_packages "${TERMINALTOOLS[@]}"
+                break
+                ;;
+            4)
+                echo "Installing rice tools"
+                install_packages "${RICETOOLS[@]}"
+                break
+                ;;
 
-        6)
-            echo "Installing dev tools"
-            install_packages "${CODE[@]}"
-            ;;
-        7)
-            echo "Installing fonts"
-            install_packages "${FONTS[@]}"
-            ;;
+            5)
+                echo "Installing document tools"
+                install_packages "${DOCS[@]}"
+                break
+                ;;
 
-        8)
-            echo "Installing flatpaks apps"
-            . install-flatpak.sh
-            ;;
+            6)
+                echo "Installing dev tools"
+                install_packages "${CODE[@]}"
+                break
+                ;;
+            7)
+                echo "Installing fonts"
+                install_packages "${FONTS[@]}"
+                break
+                ;;
 
-        9)
-            echo "exiting"
-            break
-            ;;
-    esac
+            8)
+                echo "Installing flatpaks apps"
+                . install-flatpak.sh
+                break
+                ;;
+
+            9)
+                echo "exiting"
+                exit 0
+                ;;
+            *)
+                echo "invalid option"
+                break
+                ;;
+        esac
+    done
+    echo ""
 done
