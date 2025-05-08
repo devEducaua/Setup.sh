@@ -43,23 +43,48 @@ else
   echo "yay is already installed"
 fi
 
-echo "Installing basic utilities"
-install_packages "${UTILITIES[@]}"
+echo "Choose the apps groups:"
+select option in "basic apps" "utils packages" "terminal tools" "rice tools" "docs tools" "dev tools" "fonts" "flatpak apps" "exit"; do
+    case $REPLY in
+        1)
+            echo "Installing basic apps"
+            install_packages "${APPS[@]}"
+            ;;
+        2)
+            echo "Installing utils packages"
+            install_packages "${UTILS[@]}"
+            ;;
+        3)
+            echo "Installing terminal tools"
+            install_packages "${TERMINALTOOLS[@]}"
+            ;;
+        4)
+            echo "Installing rice tools"
+            install_packages "${RICETOOLS[@]}"
+            ;;
 
-echo "Installing file utilities"
-install_packages "${FILES[@]}"
+        5)
+            echo "Installing document tools"
+            install_packages "${DOCS[@]}"
+            ;;
 
-echo "Installing document tools"
-install_packages "${DOCS[@]}"
+        6)
+            echo "Installing dev tools"
+            install_packages "${CODE[@]}"
+            ;;
+        7)
+            echo "Installing fonts"
+            install_packages "${FONTS[@]}"
+            ;;
 
-echo "Installing rice tools"
-install_packages "${RICE[@]}"
+        8)
+            echo "Installing flatpaks apps"
+            . install-flatpak.sh
+            ;;
 
-echo "Installing dev tools"
-install_packages "${CODE[@]}"
-
-echo "Installing fonts"
-install_packages "${FONTS[@]}"
-
-echo "Installing flatpaks apps"
-. install-flatpak.sh
+        9)
+            echo "exiting"
+            break
+            ;;
+    esac
+done
